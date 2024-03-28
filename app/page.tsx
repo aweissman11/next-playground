@@ -1,9 +1,9 @@
 import { getServerSession } from 'next-auth';
-import { options } from './api/auth/[...nextauth]/options';
+import { authOptions } from '../lib/auth';
 import UserCard from './_components/user-card';
 
 export default async function Home() {
-  const session = await getServerSession(options);
+  const session = await getServerSession(authOptions);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {session ? (

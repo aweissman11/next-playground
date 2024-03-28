@@ -1,28 +1,27 @@
 import Link from 'next/link';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import SignOutButton from './SignOutButton';
+import { getAuthServerSession } from '@/lib/auth';
 
-export default function Navbar() {
+async function NavBar() {
+  const session = await getAuthServerSession();
+
   return (
-    <nav className="bg-blue-800 p-4">
-      <ul className="flex justify-evenly text-2xl font-bold">
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/api/auth/signin">Sign In</Link>
-        </li>
-        <li>
-          <Link href="/api/auth/signout">Sign Out</Link>
-        </li>
-        <li>
-          <Link href="/server">Server</Link>
-        </li>
-        <li>
-          <Link href="/client">Client</Link>
-        </li>
-        <li>
-          <Link href="/extra">Extra</Link>
-        </li>
-      </ul>
-    </nav>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography component={Link} href="/" variant="h6" sx={{ flexGrow: 1 }}>
+          Playground
+        </Typography>
+        {session ? (
+          <SignOutButton />
+        ) : (
+          <Button component={Link} color="inherit" href="/sign-in">
+            Sign In
+          </Button>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
+
+export default NavBar;
