@@ -1,7 +1,15 @@
 import Link from 'next/link';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  IconButton,
+} from '@mui/material';
 import SignOutButton from './SignOutButton';
 import { getAuthServerSession } from '@/lib/auth';
+import { AddCircleRounded } from '@mui/icons-material';
 
 async function NavBar() {
   const session = await getAuthServerSession();
@@ -19,6 +27,9 @@ async function NavBar() {
             Sign In
           </Button>
         )}
+        <Link href="/todos">
+          <AddCircleRounded />
+        </Link>
       </Toolbar>
     </AppBar>
   );
