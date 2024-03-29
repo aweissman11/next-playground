@@ -17,6 +17,7 @@ datasource db {
 model Post {
   id        String   @id @default(cuid())
   name      String
+  starred   Boolean?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

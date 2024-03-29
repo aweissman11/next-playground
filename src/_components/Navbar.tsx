@@ -8,8 +8,9 @@ import {
   IconButton,
 } from '@mui/material';
 import SignOutButton from './SignOutButton';
-import { getAuthServerSession } from '@/lib/auth';
+import { getAuthServerSession } from '@/src/lib/auth';
 import { AddCircleRounded } from '@mui/icons-material';
+import NavMenu from './NavMenu';
 
 async function NavBar() {
   const session = await getAuthServerSession();
@@ -27,9 +28,7 @@ async function NavBar() {
             Sign In
           </Button>
         )}
-        <Link href="/todos">
-          <AddCircleRounded />
-        </Link>
+        <NavMenu />
       </Toolbar>
     </AppBar>
   );

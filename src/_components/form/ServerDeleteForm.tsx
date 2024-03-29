@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useFormState, useFormStatus } from "react-dom";
-import { deletePost } from '@/app/actions/deletePost';
-import { Button, IconButton } from '@mui/material';
+import { deletePost } from '@/src/app/actions/deletePost';
 import { Delete } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import { useFormState, useFormStatus } from 'react-dom';
 
 const initialState = {
-  message: "",
+  message: '',
 };
 
 function DeleteButton() {

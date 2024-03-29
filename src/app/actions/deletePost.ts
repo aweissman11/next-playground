@@ -1,7 +1,7 @@
 'use server';
 
-import { getAuthServerSession } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { getAuthServerSession } from '@/src/lib/auth';
+import { db } from '@/src/lib/db';
 import { revalidatePath } from 'next/cache';
 import * as z from 'zod';
 

@@ -1,9 +1,9 @@
 'use client'
+import UserCard from '@/src/_components/UserCard'
 // Remember you must use an AuthProvider for 
 // client components to useSession
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-import UserCard from '../_components/UserCard'
 
 export default function ClientPage() {
     const { data: session } = useSession({
