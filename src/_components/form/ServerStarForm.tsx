@@ -1,6 +1,6 @@
 'use client';
 
-import { starPost } from '@/src/app/actions/starPost';
+import { starPost } from '@/src/actions/starPost';
 import { Star, StarBorder } from '@mui/icons-material';
 import { ListItemButton, ListItemIcon } from '@mui/material';
 import { useFormState, useFormStatus } from 'react-dom';

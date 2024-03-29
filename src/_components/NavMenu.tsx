@@ -3,7 +3,7 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { IconButton } from '@mui/material';
-import { AddCircleRounded } from '@mui/icons-material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { MouseEvent, useState } from 'react';
 import Link from 'next/link';
 
@@ -27,7 +27,7 @@ export default function NavMenu() {
         onClick={handleClick}
         sx={{ color: 'white' }}
       >
-        <AddCircleRounded />
+        <MenuIcon />
       </IconButton>
       <Menu
         id="post-menu"

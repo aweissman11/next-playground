@@ -1,9 +1,10 @@
 'use client';
 
 import { createPost } from '@/src/actions/createPost';
+import { Post } from '@/src/types/post';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Alert, Button, Snackbar, TextField } from '@mui/material';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -26,8 +27,12 @@ const FormSchema = z.object({
   post: z.string().min(1, 'Post is required'),
 });
 
-export function ServerAddForm() {
-  const [formState] = useFormState(createPost, initialState);
+export function ClientAddForm({
+  setPosts,
+}: {
+  setPosts: Dispatch<SetStateAction<Post[]>>;
+}) {
+  const [formState, setFormState] = useState(initialState);
   const [errorSnackOpen, setErrorSnackOpen] = useState(false);
 
   const {
@@ -44,20 +49,20 @@ export function ServerAddForm() {
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     const formData = new FormData();
-    // Assuming 'post' is the key for your form data
     formData.append('post', data.post);
 
-    // Call the server action here only if the form is valid
-    await createPost(
-      initialState, // You might want to update this according to where you get the prevState from
-      formData,
-    );
+    const response = await fetch('/api/posts', {
+      method: 'POST',
+      body: formData,
+    });
+    const resJson = await response.json();
 
-    // Optionally reset the form
+    setFormState({ message: resJson.message });
+    setPosts((posts) => [resJson.data, ...posts]);
+
     reset();
   };
 
-  // Optional: handle form submission errors
   const onError = (errors: any) => {
     setErrorSnackOpen(true);
   };

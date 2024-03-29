@@ -1,6 +1,6 @@
 'use client';
 
-import { deletePost } from '@/src/app/actions/deletePost';
+import { deletePost } from '@/src/actions/deletePost';
 import { Delete } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useFormState, useFormStatus } from 'react-dom';
