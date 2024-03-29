@@ -44,6 +44,9 @@ export default function NavMenu() {
         <MenuItem onClick={handleClose} component={Link} href="/client">
           Client
         </MenuItem>
+        <MenuItem onClick={handleClose} component={Link} href="/api-route">
+          Api Route
+        </MenuItem>
       </Menu>
     </div>
   );

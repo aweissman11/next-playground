@@ -4,6 +4,7 @@ import { createPost } from '@/src/actions/createPost';
 import { Post } from '@/src/types/post';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Alert, Button, Snackbar, TextField } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import { Controller, useForm } from 'react-hook-form';
@@ -28,10 +29,13 @@ const FormSchema = z.object({
 });
 
 export function ClientAddForm({
+  inServerComponent: inClientComponent,
   setPosts,
 }: {
-  setPosts: Dispatch<SetStateAction<Post[]>>;
+  inServerComponent?: boolean;
+  setPosts?: Dispatch<SetStateAction<Post[]>>;
 }) {
+  const router = useRouter();
   const [formState, setFormState] = useState(initialState);
   const [errorSnackOpen, setErrorSnackOpen] = useState(false);
 
@@ -58,7 +62,12 @@ export function ClientAddForm({
     const resJson = await response.json();
 
     setFormState({ message: resJson.message });
-    setPosts((posts) => [resJson.data, ...posts]);
+    if (setPosts) {
+      setPosts((posts) => [resJson.data, ...posts]);
+    }
+    if (inClientComponent) {
+      router.refresh();
+    }
 
     reset();
   };
