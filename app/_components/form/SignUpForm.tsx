@@ -153,7 +153,7 @@ export default function SignUpForm() {
             />
           )}
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="outlined" color="primary">
           Sign Up
         </Button>
         <p className="text-center text-sm text-gray-600 mt-2">

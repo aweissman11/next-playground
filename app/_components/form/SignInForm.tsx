@@ -119,14 +119,14 @@ export default function SignInForm() {
             />
           )}
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="outlined" color="primary">
           Sign In
         </Button>
         <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
           or
         </div>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={loginWithGitHub}
           disabled={isLoading}
